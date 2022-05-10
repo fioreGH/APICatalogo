@@ -51,7 +51,7 @@ namespace APICatalogo.Controllers
 
         }
 
-        [HttpPost("{id:int}", Name = "ObterCategoria")]
+        [HttpGet("{id:int}", Name = "ObterCategoria")]
         public ActionResult<Categoria> Get(int id)
         {
 
