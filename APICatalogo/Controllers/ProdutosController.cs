@@ -17,7 +17,7 @@ namespace APICatalogo.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Produto>> Get() 
+        public ActionResult<IEnumerable<Produto>> Get()
         {
             try
             {
@@ -34,12 +34,12 @@ namespace APICatalogo.Controllers
 
                 return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno...");
             }
-            
-            
+
+
         }
 
-        [HttpGet("{id:int}",Name="ObterProduto")]
-        public ActionResult<Produto> Get(int id) 
+        [HttpGet("{id:int}", Name = "ObterProduto")]
+        public ActionResult<Produto> Get(int id)
         {
             try
             {
@@ -56,12 +56,12 @@ namespace APICatalogo.Controllers
 
                 return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno...");
             }
-            
-            
+
+
         }
 
         [HttpPost]
-        public ActionResult Post (Produto produto) 
+        public ActionResult Post(Produto produto)
         {
             try
             {
@@ -80,13 +80,13 @@ namespace APICatalogo.Controllers
 
                 return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno...");
             }
-            
-            
+
+
 
         }
 
         [HttpPut("{id:int}")]
-        public ActionResult Put(int id, Produto produto) 
+        public ActionResult Put(int id, Produto produto)
         {
             try
             {
@@ -106,11 +106,11 @@ namespace APICatalogo.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno");
             }
 
-            
+
         }
 
         [HttpDelete("{id:int}")]
-        public ActionResult Delete(int id) 
+        public ActionResult Delete(int id)
         {
             try
             {
@@ -133,7 +133,7 @@ namespace APICatalogo.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno");
             }
 
-            
+
 
         }
     }

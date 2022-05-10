@@ -47,8 +47,8 @@ namespace APICatalogo.Controllers
 
                 return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno");
             }
-            
-            
+
+
         }
 
         [HttpPost("{id:int}", Name = "ObterCategoria")]
@@ -71,51 +71,80 @@ namespace APICatalogo.Controllers
 
                 return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno");
             }
-            
-            
+
+
         }
 
         [HttpPost]
         public ActionResult Post(Categoria categoria)
         {
-            if (categoria == null)
+            try
             {
-                return BadRequest();
-            }
-            _context.Categorias.Add(categoria);
-            _context.SaveChanges();
+                if (categoria == null)
+                {
+                    return BadRequest();
+                }
+                _context.Categorias.Add(categoria);
+                _context.SaveChanges();
 
-            return new CreatedAtRouteResult("Obter Categoria", new { id = categoria.CategoriaId }, categoria);
+                return new CreatedAtRouteResult("Obter Categoria", new { id = categoria.CategoriaId }, categoria);
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno...");
+            }
+            
+            
 
         }
 
         [HttpPut("{id:int}")]
         public ActionResult Put(int id, Categoria categoria)
         {
-
-            if (id != categoria.CategoriaId)
+            try
             {
-                return BadRequest();
+                if (id != categoria.CategoriaId)
+                {
+                    return BadRequest();
+                }
+
+                _context.Entry(categoria).State = EntityState.Modified;
+                _context.SaveChanges();
+                return Ok(categoria);
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno...");
             }
 
-            _context.Entry(categoria).State = EntityState.Modified;
-            _context.SaveChanges();
-            return Ok(categoria);
+            
         }
 
         [HttpDelete("{id:int}")]
         public ActionResult Delete(int id)
         {
-            var categoria = _context.Categorias.FirstOrDefault(p => p.CategoriaId == id);
-
-            if (categoria == null)
+            try
             {
-                return NotFound("Categoria não encontrada...");
+                var categoria = _context.Categorias.FirstOrDefault(p => p.CategoriaId == id);
+
+                if (categoria == null)
+                {
+                    return NotFound("Categoria não encontrada...");
+                }
+
+                _context.Categorias.Remove(categoria);
+                _context.SaveChanges();
+                return Ok(categoria);
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno...");
             }
 
-            _context.Categorias.Remove(categoria);
-            _context.SaveChanges();
-            return Ok(categoria);
+
 
         }
 
