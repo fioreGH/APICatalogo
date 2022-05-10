@@ -106,7 +106,7 @@ namespace APICatalogo.Controllers
             {
                 if (id != categoria.CategoriaId)
                 {
-                    return BadRequest();
+                    return BadRequest("Categoria invalida...");
                 }
 
                 _context.Entry(categoria).State = EntityState.Modified;

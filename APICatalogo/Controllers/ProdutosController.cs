@@ -46,7 +46,7 @@ namespace APICatalogo.Controllers
                 var produto = _context.Produtos.FirstOrDefault(p => p.ProdutoId == id);
                 if (produto is null)
                 {
-                    return NotFound("Produto não encotrado...");
+                    return NotFound("Produto não encontrado...");
                 }
 
                 return produto;
@@ -92,7 +92,7 @@ namespace APICatalogo.Controllers
             {
                 if (id != produto.ProdutoId)
                 {
-                    BadRequest();
+                    return BadRequest();
                 }
 
                 _context.Entry(produto).State = EntityState.Modified;
